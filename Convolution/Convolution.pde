@@ -4,15 +4,15 @@
 
     Convolution matrix taken from: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 */
+import processing.video.*;
 
 PShader currentShader;
-PImage img;
+Movie myMovie;
 
 float[] convolutionMatrix;
 
 void setup(){
-    size(680, 453, P3D);
-    img = loadImage("dog.jpg");
+    size(1280, 720, P3D);
     currentShader = loadShader("shader.glsl");
 
     // Default convolution matrix
@@ -20,12 +20,19 @@ void setup(){
                         0, -1, 0,
                         -1, 5, -1,
                         0, -1, 0};
+
+    // Load movie
+    myMovie = new Movie(this, "video.mp4");
+    myMovie.loop();
 }
 
 void draw(){
     currentShader.set("convolutionMatrix", convolutionMatrix);
     shader(currentShader);
-    image(img, 0, 0);
+    if(myMovie.available()){
+        myMovie.read();
+    }
+    image(myMovie.get(), 0, 0);
 }
 
 void keyPressed(){
