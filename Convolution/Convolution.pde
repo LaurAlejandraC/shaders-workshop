@@ -2,7 +2,8 @@
     Names: Laura Viviana Alvarez Carvajal y Laura Alejandra Chaparro Gutierrez
     Visual Computing - Universidad Nacional de Colombia
 
-    Convolution matrix taken from: https://en.wikipedia.org/wiki/Kernel_(image_processing)
+    Convolution matrices taken from: https://en.wikipedia.org/wiki/Kernel_(image_processing)
+                                     http://setosa.io/ev/image-kernels/
 */
 import processing.video.*;
 
@@ -99,6 +100,62 @@ void keyPressed(){
                                 0, 1, 2, 1, 0,
                                 0, 0, 0, 0, 0};
             convolutionMatrix = scalarMultiplication(convolutionMatrix, 1/16.0);
+            break;
+        // Gaussian Blur 5x5
+        case 'h':
+            convolutionMatrix = new float[]{
+                                1, 4, 6, 4, 1,
+                                4, 16, 24, 16, 4,
+                                6, 24, 36, 24, 6,
+                                4, 16, 24, 16, 4,
+                                1, 4, 6, 4, 1};
+            convolutionMatrix = scalarMultiplication(convolutionMatrix, 1/256.0);
+            break;
+        // Unsharp masking 5x5
+        case 'u':
+            convolutionMatrix = new float[]{
+                                1, 4, 6, 4, 1,
+                                4, 16, 24, 16, 4,
+                                6, 24, -476, 24, 6,
+                                4, 16, 24, 16, 4,
+                                1, 4, 6, 4, 1};
+            convolutionMatrix = scalarMultiplication(convolutionMatrix, -1/256.0);
+            break;
+        // Bottom sobel
+        case 'd':
+            convolutionMatrix = new float[]{
+                                0, 0, 0, 0, 0,
+                                0, -1, -2, -1, 0,
+                                0, 0, 0, 0, 0,
+                                0, 1, 2, 1, 0,
+                                0, 0, 0, 0, 0};
+            break;
+        // Emboss
+        case 'w':
+            convolutionMatrix = new float[]{
+                                0, 0, 0, 0, 0,
+                                0, -2, -1, 0, 0,
+                                0, -1, 1, 1, 0,
+                                0, 0, 1, 2, 0,
+                                0, 0, 0, 0, 0};
+            break;
+        // Left sobel
+        case 'l':
+            convolutionMatrix = new float[]{
+                                0, 0, 0, 0, 0,
+                                0, 1, 0, -1, 0,
+                                0, 2, 0, -2, 0,
+                                0, 1, 0, -1, 0,
+                                0, 0, 0, 0, 0};
+            break;
+        // Right sobel
+        case 'k':
+            convolutionMatrix = new float[]{
+                                0, 0, 0, 0, 0,
+                                0, -1, 0, 1, 0,
+                                0, -2, 0, 2, 0,
+                                0, -1, 0, 1, 0,
+                                0, 0, 0, 0, 0};
             break;
     }
 }
