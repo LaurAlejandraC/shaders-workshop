@@ -40,50 +40,64 @@ void keyPressed(){
         // Identity matrix
         case 'i':
             convolutionMatrix = new float[]{
-                                0, 0, 0,
-                                0, 1, 0,
-                                0, 0, 0};
+                                0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0,
+                                0, 0, 1, 0, 0,
+                                0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0};
             break;
         // Edge detection
         case 'e':
             convolutionMatrix = new float[]{
-                                1, 0, -1,
-                                0, 0, 0,
-                                -1, 0, 1};
+                                0, 0, 0, 0, 0,
+                                0, 1, 0, -1, 0,
+                                0, 0, 0, 0, 0,
+                                0, -1, 0, 1, 0,
+                                0, 0, 0, 0, 0};
             break;
         case 'r':
             convolutionMatrix = new float[]{
-                                0, 1, 0,
-                                1, -4, 1,
-                                0, 1, 0};
+                                0, 0, 0, 0, 0,
+                                0, 0, 1, 0, 0,
+                                0, 1, -4, 1, 0,
+                                0, 0, 1, 0, 0,
+                                0, 0, 0, 0, 0};
             break;
         case 't':
             convolutionMatrix = new float[]{
-                                -1, -1, -1,
-                                -1, 8, -1,
-                                -1, -1, -1};
+                                0, 0, 0, 0, 0,
+                                0, -1, -1, -1, 0,
+                                0, -1, 8, -1, 0,
+                                0, -1, -1, -1, 0,
+                                0, 0, 0, 0, 0};
             break;
         // Sharpen
         case 's':
             convolutionMatrix = new float[]{
-                                0, -1, 0,
-                                -1, 5, -1,
-                                0, -1, 0};
+                                0, 0, 0, 0, 0,
+                                0, 0, -1, 0, 0,
+                                0, -1, 5, -1, 0,
+                                0, 0, -1, 0, 0,
+                                0, 0, 0, 0, 0};
             break;
         // Box blur
         case 'b':
             convolutionMatrix = new float[]{
-                                1, 1, 1,
-                                1, 1, 1,
-                                1, 1, 1};
+                                0, 0, 0, 0, 0,
+                                0, 1, 1, 1, 0,
+                                0, 1, 1, 1, 0,
+                                0, 1, 1, 1, 0,
+                                0, 0, 0, 0, 0};
             convolutionMatrix = scalarMultiplication(convolutionMatrix, 1/9.0);
             break;
         // Gaussian Blur
         case 'g':
             convolutionMatrix = new float[]{
-                                1, 2, 1,
-                                2, 4, 2,
-                                1, 2, 1};
+                                0, 0, 0, 0, 0,
+                                0, 1, 2, 1, 0,
+                                0, 2, 4, 2, 0,
+                                0, 1, 2, 1, 0,
+                                0, 0, 0, 0, 0};
             convolutionMatrix = scalarMultiplication(convolutionMatrix, 1/16.0);
             break;
     }
